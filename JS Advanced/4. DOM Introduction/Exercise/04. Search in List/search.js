@@ -8,6 +8,9 @@ function search() {
          town.style.textDecoration = 'underline';
          town.style.fontWeight = 'bold';
          count++
+      } else{
+         town.style.fontWeight = 'normal';
+         town.style.textDecoration = 'none';
       }
    }
    document.getElementById('result').innerText = `${count} matches found`;
