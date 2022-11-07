@@ -27,7 +27,7 @@ function getWeather() {
         
         function getWeather(data) {
             let code = getLocationCode(data);
-            //submitBtn.disabled = true;
+            submitBtn.disabled = true;
             
             let urlCurrentConditions = `http://localhost:3030/jsonstore/forecaster/today/${code}`;
             fetch(urlCurrentConditions)
