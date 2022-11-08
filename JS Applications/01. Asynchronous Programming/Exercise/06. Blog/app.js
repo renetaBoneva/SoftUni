@@ -1,3 +1,10 @@
+let selectPosts = document.getElementById('posts');
+let postId;
+let urlAllPosts = 'http://localhost:3030/jsonstore/blog/posts'
+let urlAllComments = `http://localhost:3030/jsonstore/blog/comments`
+let selectedPostInfo;
+let selectedPostComments;
+
 function attachEvents() {
     let btnLoadPosts = document.getElementById('btnLoadPosts');
     btnLoadPosts.addEventListener('click', loadPostOptions)
@@ -5,38 +12,66 @@ function attachEvents() {
     let btnViewPost = document.getElementById('btnViewPost');
     btnViewPost.addEventListener('click', viewPost)
 }
-let selectPosts = document.getElementById('posts');
 
-function viewPost() {
-    // {
-    //     "id": "-MSgyQMjBNfYjW2m6r97",
-    //     "postId": "-MSbypx-13fHPDyzNRtf",
-    //     "text": "A very interesting post!"
-    // }
-    //let urlSelectedPost = `http://localhost:3030/jsonstore/blog/comments/${id}`;
+async function viewPost() {
+    let response = await fetch(urlAllComments);
+    let data = await response.json();
+    await getComments(data)
+    // fetch(urlAllComments)
+    //     .then((response) => response.json())
+    //     .then(getComments)
 
 
-    // "-MSgySbWEFw3rhCfIIns": {
-    //     "id": "-MSgySbWEFw3rhCfIIns",
-    //     "postId": "-MSbypx-13fHPDyzNRtf",
-    //     "text": "Unit Testing is a useful testing technique in programming."
-    // }
-    let urlAllPosts = `http://localhost:3030/jsonstore/blog/comments`
-    fetch(urlAllPosts)
-        .then((response) => response.json())
-        .then(createPost)
+    let responseAllPosts = await fetch(urlAllPosts);
+    let dataAllPosts = await responseAllPosts.json();
+    await getPostInfo(dataAllPosts)
+    // fetch(urlAllPosts)
+    //     .then((response) => response.json())
+    //     .then(getPostInfo)
+
+    let h1 = document.getElementById('post-title');
+    h1.textContent = selectedPostInfo.title;
+
+    let p = document.getElementById('post-body')
+    p.textContent = selectedPostInfo.body
+
+    let commentsUl = document.getElementById('post-comments');
+    commentsUl.innerHTML = '';
+    selectedPostComments.map((comment) => {
+        let li = document.createElement('li')
+        li.textContent = comment;
+        commentsUl.appendChild(li)
+    })
+
 }
 
-function createPost(data) {
-    let postId = selectPosts.value;
-    let id = Object.entries(data).fillter(([id, objCommentInfo]) =>{
-        
-    });
+function getPostInfo(data) {
+    let postsArr = Array.from(Object.entries(data));
+    let currentPostInfo = postsArr.filter(([currentPostId, postInfo]) => {
+        return currentPostId == postId;
+    })
+
+    selectedPostInfo = currentPostInfo[0][1];
+}
+
+function getComments(data) {
+    selectPosts = document.getElementById('posts');
+    postId = selectPosts.value;
+    let comments = [];
+
+    comments = Object.entries(data)
+        .filter(([id, objCommentInfo]) => {
+            return objCommentInfo.postId == postId;
+        })
+        .map(([id, infoObj]) => {
+            return infoObj.text
+        });
+
+    selectedPostComments = comments;
 }
 
 function loadPostOptions() {
-    let urlPostsInfo = 'http://localhost:3030/jsonstore/blog/posts'
-    fetch(urlPostsInfo)
+    fetch(urlAllPosts)
         .then(response => response.json())
         .then(makeOptions)
 }
@@ -52,4 +87,3 @@ function makeOptions(data) {
 
 }
 attachEvents();
-//debugger
