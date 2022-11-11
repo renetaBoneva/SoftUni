@@ -1,5 +1,8 @@
 let loadBooksBtn = document.getElementById('loadBooks');
 loadBooksBtn.addEventListener('click', getAllBooks)
+let tableBody = document.querySelector('tbody');
+tableBody.innerHTML = '';
+getAllBooks()
 
 let form = document.querySelector('form');
 form.addEventListener('submit', getNewBookInfo)
@@ -11,7 +14,6 @@ async function getAllBooks() {
 
     let booksInfoArr = Array.from(Object.entries(allBooksInfo));
 
-    let tableBody = document.querySelector('tbody');
     tableBody.innerHTML = '';
 
     booksInfoArr.forEach(([id, infoObj]) => {
@@ -44,6 +46,7 @@ async function getAllBooks() {
 
 function editBookInfo(event) {
     //Treat old info
+    event.preventDefault()
     form.style.display = "none";
     let htmlBODY = document.querySelector('body');
     let tr = event.target.parentNode.parentNode;
@@ -51,8 +54,11 @@ function editBookInfo(event) {
     let oldAuthor = tr.querySelectorAll('td')[1].textContent
     let id = tr.getAttribute('id')
 
-    //Creating edit form
-    let editForm = document.createElement('form');
+    createEditForm(htmlBODY, oldTitle, oldAuthor, id)
+}
+
+function createEditForm(htmlBODY, oldTitle, oldAuthor, id) {
+    let editForm = document.createElement("form");
     editForm.setAttribute('id', "editBook")
     let h3 = document.createElement('h3');
     h3.textContent = 'EditFORM';
@@ -63,7 +69,7 @@ function editBookInfo(event) {
     editForm.appendChild(titleLabel);
 
     let titleInput = document.createElement('input');
-    titleInput.textContent = oldTitle;
+    titleInput.value = oldTitle;
     titleInput.setAttribute('type', 'text')
     titleInput.setAttribute('name', 'title')
     editForm.appendChild(titleInput)
@@ -73,30 +79,33 @@ function editBookInfo(event) {
     editForm.appendChild(authorLabel);
 
     let authorInput = document.createElement('input');
-    authorInput.textContent = oldAuthor;
+    authorInput.value = oldAuthor;
     authorInput.setAttribute('type', 'text')
     authorInput.setAttribute('name', 'author')
     editForm.appendChild(authorInput)
 
     let saveBTN = document.createElement('button');
-    saveBTN.textContent = 'Save';
-    saveBTN.addEventListener('click', getEditedInfo(event, id))
+    saveBTN.innerText = 'Save';
+
     editForm.appendChild(saveBTN);
-    
     htmlBODY.appendChild(editForm);
+    editForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        getEditedInfo(event, id)
+    })
+
 }
 
 function getEditedInfo(event, id) {
-    event.preventDefault();    
     form.style.display = "block";
     let editForm = document.getElementById('editBook');
-    editForm.style.display = 'none';
+    //editForm.style.display = 'none';
 
     let newBookForm = new FormData(editForm);
-    
+
     let author = newBookForm.get('author')
     let title = newBookForm.get('title')
-    
+
     if (title == '' && author == "") {
         window.alert("Please, enter title and author!");
     } else if (title == '') {
@@ -104,16 +113,17 @@ function getEditedInfo(event, id) {
     } else if (author == '') {
         window.alert("Please, enter author!");
     }
-
-    putEditedBook(id)
+    editForm.remove()
+    putEditedBook(id, { author, title })
 }
 
-async function putEditedBook(id){
-    let response = await fetch(`http://localhost:3030/jsonstore/collections/books/${id}`,{
+async function putEditedBook(id, body) {
+    let response = await fetch(`http://localhost:3030/jsonstore/collections/books/${id}`, {
         method: 'PUT',
-        headers: {'content-Type': 'application/json'},
+        headers: { 'content-Type': 'application/json' },
         body: JSON.stringify(body)
     })
+    getAllBooks()
 }
 
 async function deleteBookInfo(event) {
@@ -153,4 +163,4 @@ async function postNewBookInfo(body) {
     })
     getAllBooks()
 }
-debugger
+// debugger
