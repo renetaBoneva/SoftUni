@@ -6,21 +6,21 @@ let endpoint = {
     'logout': 'users/logout'
 }
 
-export async function onLogin(emai, password) {
+export async function onLogin(email, password) {
     try {
-        const user = await api.post(endpoint.login, { emai, passlord: password })
+        const user = await api.post(endpoint.login, { email, password })
 
-        sessionStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('user', JSON.stringify(user))
     } catch (error) {
         return error;
     }
 }
 
-export async function onRegister(emai, password) {
+export async function onRegister(email, password) {
     try {
-        const user = await api.post(endpoint.register, { emai, password })
+        const user = await api.post(endpoint.register, { email, password })
 
-        sessionStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('user', JSON.stringify(user))
     } catch (error) {
         return error;
     }
@@ -28,8 +28,8 @@ export async function onRegister(emai, password) {
 
 export async function onLogout() {
     try {
-        await api.get(endpoint.logout)
-        sessionStorage.removeItem('user')
+        await api.del(endpoint.logout)
+        localStorage.removeItem('user')
     } catch (error) {
         return error;
     }
