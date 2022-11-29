@@ -1,5 +1,12 @@
+import { handleLogout } from "../views/home.js";
+
 export function initialize(links) {
-    Array.from(document.querySelectorAll('a')).forEach(a => a.addEventListener('click', onNav));
+    Array.from(document.querySelectorAll('a')).forEach(a => {
+        if (a.textContent == 'Logout') {
+            a.addEventListener('click', handleLogout)
+        } else {
+             a.addEventListener('click', onNav) }
+    });
     let main = document.querySelector('main');
 
 
@@ -15,7 +22,7 @@ export function initialize(links) {
     }
 
     function onNav(event) {
-        event.preventDefault();
+        event.preventDefault()
 
         let target = event.target;
         if (target.tagName == 'IMG') {
@@ -36,7 +43,7 @@ export function initialize(links) {
     }
 
     function checkIsLoggedIn() {
-        if (sessionStorage.user) {
+        if (localStorage.user) {
 
             Array.from(document.querySelectorAll('nav a')).forEach(a => {
                 if (a.textContent == "Create" || a.textContent == "Logout") {
