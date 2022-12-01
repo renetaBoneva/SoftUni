@@ -11,7 +11,12 @@ async function addItem(event) {
     if(itemText == ""){
         return alert('Please, enter item text!')
     }
-    await postNewItem({'text': itemText})
+
+    await fetch('http://localhost:3030/jsonstore/advanced/dropdown', {
+        method: 'post',
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({'text': itemText})
+    })
     loadOptions()
     newItemForm.reset()
 }
@@ -28,12 +33,4 @@ async function loadOptions() {
     })
     
     render(toLoad, root)
-}
-
-async function postNewItem(body){
-    let response = await fetch('http://localhost:3030/jsonstore/advanced/dropdown', {
-        method: 'post',
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(body)
-    })
 }
