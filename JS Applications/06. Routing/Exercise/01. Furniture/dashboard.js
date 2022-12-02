@@ -14,6 +14,8 @@ export async function showDashboardView(ctx, next) {
             ${repeat(allFurnitureData, (item)=> item._id, createFurnitureTemplate)}
         </div>`
     ctx.renderView(content)
+    const a = document.querySelector('nav a')
+    a.classList.add('active')
 }
 
 export function createFurnitureTemplate(itemData) {
