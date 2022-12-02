@@ -48,7 +48,8 @@ function isOwner(data){
         return ""
     }
 }
-async function deleteHandler(event) {   
+async function deleteHandler(event) { 
+    event.preventDefault()
     const _id = event.target.getAttribute('_id') 
     let text = "Are you shure you want to delete this item?";
     if (confirm(text) == true) {
