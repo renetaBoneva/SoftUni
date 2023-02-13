@@ -1,13 +1,18 @@
 const express = require('express');
+const router = express.Router();
 
-const config = require('./config/portConfig');
-const setupViewEngine = require('./config/viewEnginConfig');
-const routes = require('./routes');
+const cubeController = require('./controllers/cubeController')
+const homeController = require('./controllers/homeController')
 
-const app = express();
-setupViewEngine(app)
+router.get('/', homeController.getHomePage);
+router.get('/about', homeController.getAboutPage);
 
-app.use(express.static('src/public'))
-app.use(routes)
+router.get('/create', cubeController.getCreateCube);
+router.post('/create', cubeController.postCreateCube);
+router.get('/details/:cubeId', cubeController.getCubeDetails)
 
-app.listen(config.PORT, ()=> console.log(`Server is running on port ${config.PORT}...`));
+router.get('*', (req, res)=>{
+    res.render('404');
+});
+
+module.exports = router;
