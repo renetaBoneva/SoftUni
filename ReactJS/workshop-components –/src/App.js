@@ -9,15 +9,37 @@ import Table from './components/Table';
 
 function App() {
   const [usersData, setUsersData] = useState([]);
+  const [isCreated, setIsCreated] = useState(true);
+  const [isShowDelete, setIsShowDelete] = useState(true);
 
   useEffect(() => {
     userService.getAll()
       .then(data => {
         setUsersData(data)
-      } )
+      })
       .catch(err => console.log(err.message));
   }, [])
 
+  function onUserCreateSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData);
+
+
+    userService.createUser(data)
+      .then(res => {
+        setUsersData(state => { return [...state, res] })
+        setIsCreated(false);
+      })
+      .catch(err => console.log(err.message));
+  }
+
+  function deleteUserHandler(_id) {
+    userService.deleteUser(_id)
+      .then(setIsShowDelete(false))
+      .catch(err => console.log(err.message))
+  }
 
 
   return (
@@ -28,8 +50,13 @@ function App() {
         <section className="card users-container">
 
           <SearchBar />
-          <Table usersData={usersData} />
-          <button className="btn-add btn">Add new user</button>
+          <Table 
+            usersData={usersData} 
+            onUserCreateSubmit={onUserCreateSubmit} 
+            isCreated={isCreated} 
+            deleteUserHandler={deleteUserHandler}
+            setIsShowDelete={isShowDelete}
+            />
           <Pagination />
 
         </section>
