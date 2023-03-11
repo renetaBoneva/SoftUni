@@ -13,3 +13,41 @@ export async function getSelectedUser(userId) {
 
     return result.user;
 }
+
+export async function createUser(userData) {
+    const { country, city, street, streetNumber, ...data } = userData;
+    data.address = { streetNumber, street, city, country };
+    let result;
+
+    const response = await fetch(baseURL, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`)
+    }
+
+    result = await response.json();
+
+    return result.user;
+}
+
+export async function deleteUser(id) {
+    let result;
+
+    const response = await fetch(`${baseURL}/${id}`, {
+        method: "DELETE"
+    });
+
+    if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`)
+    }
+
+    result = await response.json();
+
+    return result.userId;
+}
