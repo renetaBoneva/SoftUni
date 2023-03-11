@@ -1,6 +1,6 @@
 export function formatDate(date) {
     date = new Date(date);
-    let result = date.toLocaleDateString( "en-US",{month: "short", day: 'numeric' ,year: "numeric"})
+    let result = date.toLocaleDateString("en-US", { month: "short", day: 'numeric', year: "numeric" })
     return result;
 }
 
@@ -14,13 +14,14 @@ function TableRow({
     phoneNumber,
     createdAt,
     onInfo,
+    onDeleteClick,
 }) {
     return (
 
         <tr>
             <td>
                 <img src={imageUrl}
-                    alt={`${firstName}'s profile `}className="image" />
+                    alt={`${firstName}'s profile `} className="image" />
             </td>
             <td>{firstName}</td>
             <td>{lastName}</td>
@@ -38,7 +39,7 @@ function TableRow({
                         </path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                <button className="btn delete-btn" title="Delete" onClick={() => onDeleteClick(_id)}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"
