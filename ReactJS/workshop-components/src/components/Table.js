@@ -10,11 +10,23 @@ function Table({
     usersData,
     onUserCreateSubmit,
     deleteUserHandler,
+    formData,
+    setFormData
 }) {
     const [selectedUser, setSelectedUser] = useState(null);
     const [deleteUserById, setDeleteUserById] = useState(null);
-    const [createEditUser, setCreateEditUser] = useState(false);
     const [createOrEdit, setCreateOrEdit] = useState('create');
+    //     _id: 1,
+    //     firstName: '',
+    //     lastName: "",
+    //     email: '',
+    //     phoneNumber: 0,
+    //     imageUrl: "",
+    //     country: "",
+    //     city: "",
+    //     street: "",
+    //     streetNumber: 45
+    // });
 
     function onInfo(userId) {
         userService.getSelectedUser(userId)
@@ -25,35 +37,63 @@ function Table({
     function onClose() {
         setSelectedUser(null);
         setDeleteUserById(null);
-        setCreateEditUser(false);
+        setFormData(null)
     }
 
     function onDeleteClick(_id) {
         setDeleteUserById(_id);
     }
 
-    function onEditClick(_id){
+    function onEditClick(_id) {
         userService.getSelectedUser(_id)
             .then(usersDetails => {
                 setCreateOrEdit('edit')
-                setCreateEditUser(usersDetails)})
+
+                setFormData(state => ({
+                    _id: usersDetails._id,
+                    firstName: usersDetails.firstName,
+                    lastName: usersDetails.lastName,
+                    email: usersDetails.email,
+                    imageUrl: usersDetails.imageUrl,
+                    phoneNumber: usersDetails.phoneNumber,
+                    country: usersDetails.address.country,
+                    city: usersDetails.address.city,
+                    street: usersDetails.address.street,
+                    streetNumber: usersDetails.address.streetNumber
+                }))
+            })
             .catch(err => console.log(err.message));
     }
 
+
+    function onChangeFormHandler(e) {
+        setFormData(state => ({ ...state, [e.target.name]: e.target.value }))
+    }
+
+
     return (
         <>
-            {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
-            {createEditUser && <UserCreateEdit onClose={onClose} 
-                                           setCreateUser={setCreateEditUser} 
-                                           onUserCreateSubmit={onUserCreateSubmit}
-                                           createOrEdit={createOrEdit}
-                                           setCreateOrEdit={setCreateOrEdit}
-                                           user={createEditUser}
-                                            />}
-            {deleteUserById && <DeleteUser onClose={onClose} 
-                                            _id={deleteUserById} 
-                                            setDeleteUserById={setDeleteUserById} 
-                                            deleteUserHandler={deleteUserHandler} />}
+            {selectedUser &&
+                <UserDetails
+                    {...selectedUser}
+                    onClose={onClose}
+                />}
+            {formData &&
+                <UserCreateEdit
+                    onClose={onClose}
+                    onUserCreateSubmit={onUserCreateSubmit}
+                    createOrEdit={createOrEdit}
+                    setCreateOrEdit={setCreateOrEdit}
+                    onChangeFormHandler={onChangeFormHandler}
+                    {...formData}
+                />}
+            {deleteUserById &&
+                <DeleteUser
+                    onClose={onClose}
+                    _id={deleteUserById}
+                    setDeleteUserById={setDeleteUserById}
+                    deleteUserHandler={deleteUserHandler}
+                />}
             <div className="table-wrapper">
                 <table className="table">
                     <thead>
@@ -111,18 +151,18 @@ function Table({
                         </tr>
                     </thead>
                     <tbody>
-                        {usersData.map(user => <TableRow 
-                                    key={user._id} 
-                                    {...user} 
-                                    onInfo={onInfo} 
-                                    onDeleteClick={onDeleteClick}
-                                    onEditClick={onEditClick}
-                                    />)}
+                        {usersData.map(user => <TableRow
+                            key={user._id}
+                            {...user}
+                            onInfo={onInfo}
+                            onDeleteClick={onDeleteClick}
+                            onEditClick={onEditClick}
+                        />)}
 
                     </tbody>
                 </table>
-            </div> 
-            <button className="btn-add btn" onClick={() => { setCreateEditUser(true) }}>Add new user</button>
+            </div>
+            <button className="btn-add btn" onClick={() => { setFormData(true) }}>Add new user</button>
         </>
     );
 
