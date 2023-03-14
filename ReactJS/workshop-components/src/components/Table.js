@@ -16,17 +16,18 @@ function Table({
     const [selectedUser, setSelectedUser] = useState(null);
     const [deleteUserById, setDeleteUserById] = useState(null);
     const [createOrEdit, setCreateOrEdit] = useState('create');
-    //     _id: 1,
-    //     firstName: '',
-    //     lastName: "",
-    //     email: '',
-    //     phoneNumber: 0,
-    //     imageUrl: "",
-    //     country: "",
-    //     city: "",
-    //     street: "",
-    //     streetNumber: 45
-    // });
+    const [errors, setErrors] = useState({
+        _id: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        imageUrl: "",
+        country: "",
+        city: "",
+        street: "",
+        streetNumber: ""
+    });
 
     function onInfo(userId) {
         userService.getSelectedUser(userId)
@@ -70,6 +71,53 @@ function Table({
         setFormData(state => ({ ...state, [e.target.name]: e.target.value }))
     }
 
+    function errorHandle(e) {
+        const currentEl = e.target.name;
+        const value = e.target.value;
+        let err;
+        
+        // Email is not valid!
+        // Phone number is not valid!
+        // ImageUrl is not valid!
+        // Country should be at least 2 characters long!
+        // City should be at least 3 characters long!
+        // Street should be at least 3 characters long!
+        // Street number should be a positive number!
+
+        switch (currentEl) {
+            case 'firstName':
+                if (value.length < 3) {
+                    err = "First name should be at least 3 characters long!"
+                    setErrors(state => ({...state, [currentEl]: err}));
+                } else if (value.length > 19) {
+                    err = "First name shouldn't be longer than 19 characters!"
+                    setErrors(state => ({...state, [currentEl]: err}));
+                } else {
+                    setErrors(state => ({...state, [currentEl]: ""}));
+                }
+                break;
+            case 'lastName':
+            break;
+            case 'email':
+            break;
+            case 'phoneNumber':
+            break;
+            case 'imageUrl':
+            break;
+            case 'country':
+            break;
+            case 'city':
+            break;
+            case 'street':
+            break;
+            case 'streetNumber':
+            break;
+            default:
+                break;
+        }
+
+    }
+
 
     return (
         <>
@@ -85,6 +133,8 @@ function Table({
                     createOrEdit={createOrEdit}
                     setCreateOrEdit={setCreateOrEdit}
                     onChangeFormHandler={onChangeFormHandler}
+                    errorHandle={errorHandle}
+                    errors={errors}
                     {...formData}
                 />}
             {deleteUserById &&
