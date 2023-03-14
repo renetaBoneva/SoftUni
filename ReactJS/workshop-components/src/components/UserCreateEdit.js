@@ -1,25 +1,20 @@
 function UserCreateEdit({
     onClose,
     onUserCreateSubmit,
-    setCreateUser,
     createOrEdit,
-    user,
     setCreateOrEdit,
+    onChangeFormHandler,
+    _id, 
+    firstName, 
+    lastName, 
+    email, 
+    imageUrl, 
+    phoneNumber, 
+    country, 
+    city, 
+    street, 
+    streetNumber
 }) {
-    let _id, firstName, lastName, email, imageUrl, phoneNumber, country, city, street, streetNumber;
-    if (user !== true && user !== false) {
-        _id = user._id;
-        firstName = user.firstName;
-        lastName = user.lastName;
-        email = user.email;
-        imageUrl = user.imageUrl;
-        phoneNumber = user.phoneNumber;
-        country = user.address.country;
-        city = user.address.city;
-        street = user.address.street;
-        streetNumber = user.address.streetNumber;
-    }
-
     return (
         <div className="overlay">
             <div className="backdrop"></div>
@@ -36,13 +31,13 @@ function UserCreateEdit({
                             </svg>
                         </button>
                     </header>
-                    <form onSubmit={(e) => { onUserCreateSubmit(e, setCreateUser, createOrEdit, setCreateOrEdit, _id) }}>
+                    <form onSubmit={(e) => { onUserCreateSubmit(e, createOrEdit, setCreateOrEdit, _id) }}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label forhtml="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" defaultValue={firstName ? firstName : ""} />
+                                    <input id="firstName" name="firstName" type="text" value={firstName ? firstName : ""} onChange={onChangeFormHandler} />
                                 </div>
                                 <p className="form-error">
                                     First name should be at least 3 characters long!
@@ -52,7 +47,7 @@ function UserCreateEdit({
                                 <label forhtml="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" defaultValue={lastName ? lastName : ""} />
+                                    <input id="lastName" name="lastName" type="text" value={lastName ? lastName : ""} onChange={onChangeFormHandler}  />
                                 </div>
                                 <p className="form-error">
                                     Last name should be at least 3 characters long!
@@ -65,7 +60,7 @@ function UserCreateEdit({
                                 <label forhtml="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" defaultValue={email ? email : ""} />
+                                    <input id="email" name="email" type="text" value={email ? email : ""} onChange={onChangeFormHandler}  />
                                 </div>
                                 <p className="form-error">Email is not valid!</p>
                             </div>
@@ -73,7 +68,7 @@ function UserCreateEdit({
                                 <label forhtml="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" defaultValue={phoneNumber ? phoneNumber : ""} />
+                                    <input id="phoneNumber" name="phoneNumber" type="text" value={phoneNumber ? phoneNumber : ""} onChange={onChangeFormHandler}  />
                                 </div>
                                 <p className="form-error">Phone number is not valid!</p>
                             </div>
@@ -83,7 +78,7 @@ function UserCreateEdit({
                             <label forhtml="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" defaultValue={imageUrl ? imageUrl : ""} />
+                                <input id="imageUrl" name="imageUrl" type="text" value={imageUrl ? imageUrl : ""} onChange={onChangeFormHandler}  />
                             </div>
                             <p className="form-error">ImageUrl is not valid!</p>
                         </div>
@@ -93,7 +88,7 @@ function UserCreateEdit({
                                 <label forhtml="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" defaultValue={country ? country : ""} />
+                                    <input id="country" name="country" type="text" value={country ? country : ""} onChange={onChangeFormHandler} />
                                 </div>
                                 <p className="form-error">
                                     Country should be at least 2 characters long!
@@ -103,7 +98,7 @@ function UserCreateEdit({
                                 <label forhtml="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" defaultValue={city ? city : ""} />
+                                    <input id="city" name="city" type="text" value={city ? city : ""} onChange={onChangeFormHandler} />
                                 </div>
                                 <p className="form-error">
                                     City should be at least 3 characters long!
@@ -116,7 +111,7 @@ function UserCreateEdit({
                                 <label forhtml="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" defaultValue={street ? street : ""} />
+                                    <input id="street" name="street" type="text" value={street ? street : ""} onChange={onChangeFormHandler} />
                                 </div>
                                 <p className="form-error">
                                     Street should be at least 3 characters long!
@@ -126,7 +121,7 @@ function UserCreateEdit({
                                 <label forhtml="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" defaultValue={streetNumber ? streetNumber : ""} />
+                                    <input id="streetNumber" name="streetNumber" type="text" value={streetNumber ? streetNumber : ""} onChange={onChangeFormHandler} />
                                 </div>
                                 <p className="form-error">
                                     Street number should be a positive number!
