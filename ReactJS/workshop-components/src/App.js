@@ -9,6 +9,7 @@ import Table from './components/Table';
 
 function App() {
   const [usersData, setUsersData] = useState([]);
+  const [formData, setFormData] = useState(null)
 
   useEffect(() => {
     userService.getAll()
@@ -18,7 +19,7 @@ function App() {
       .catch(err => console.log(err.message));
   }, [])
 
-  function onUserCreateSubmit(event, setCreateUser, createOrEdit, setCreateOrEdit, _id) {
+  function onUserCreateSubmit(event, createOrEdit, setCreateOrEdit, _id) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -30,13 +31,13 @@ function App() {
           .then(res => setUsersData(state => state.map(s => s._id === res._id ? res : s)))
           .catch(err => console.log(err.message));
         setCreateOrEdit('create');
-        setCreateUser(false)
+        setFormData(null)
         break;
       case 'create':
         userService.createUser(data)
           .then(res => {
             setUsersData(state => { return [...state, res] });
-            setCreateUser(false);
+            setFormData(null);
           })
           .catch(err => console.log(err.message));
         break;
@@ -54,7 +55,6 @@ function App() {
       .catch(err => console.log(err.message))
   }
 
-
   return (
     <>
       <Header />
@@ -67,6 +67,8 @@ function App() {
             usersData={usersData}
             onUserCreateSubmit={onUserCreateSubmit}
             deleteUserHandler={deleteUserHandler}
+            formData={formData}
+            setFormData={setFormData}
           />
           <Pagination />
 
