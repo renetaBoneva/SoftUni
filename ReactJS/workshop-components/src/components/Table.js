@@ -75,46 +75,68 @@ function Table({
         const currentEl = e.target.name;
         const value = e.target.value;
         let err;
-        
-        // Email is not valid!
-        // Phone number is not valid!
-        // ImageUrl is not valid!
-        // Country should be at least 2 characters long!
-        // City should be at least 3 characters long!
-        // Street should be at least 3 characters long!
-        // Street number should be a positive number!
 
         switch (currentEl) {
             case 'firstName':
+            case 'lastName':
+            case 'city':
+            case 'street':
                 if (value.length < 3) {
-                    err = "First name should be at least 3 characters long!"
-                    setErrors(state => ({...state, [currentEl]: err}));
+                    if (currentEl == 'firstName') {
+                        err = "First name should be at least 3 characters long!";
+                    } else if (currentEl == 'firstName') {
+                        err = "Last name should be at least 3 characters long!";
+                    } else if (currentEl == 'city') {
+                        err = "City should be at least 3 characters long!";
+                    } else if (currentEl == 'street') {
+                        err = "Street should be at least 3 characters long!";
+                    }
                 } else if (value.length > 19) {
                     err = "First name shouldn't be longer than 19 characters!"
-                    setErrors(state => ({...state, [currentEl]: err}));
                 } else {
-                    setErrors(state => ({...state, [currentEl]: ""}));
+                    err = "";
                 }
                 break;
-            case 'lastName':
-            break;
             case 'email':
-            break;
+                if (!value.match(/.*@.*\..*/g)) {
+                    err = "Email is not valid!";
+                } else {
+                    err = "";
+                }
+                break;
             case 'phoneNumber':
-            break;
+                if (!value.match(/(?:(0[1-9][0-9]{8})|(\+359[0-9]{9}))/g)) {
+                    err = "Phone number is not valid!";
+                } else {
+                    err = "";
+                }
+                break;
             case 'imageUrl':
-            break;
+                if (!value.match(/(?:(http)|(https)):\/\//g)) {
+                    err = "ImageUrl is not valid!";
+                } else {
+                    err = "";
+                }
+                break;
             case 'country':
-            break;
-            case 'city':
-            break;
-            case 'street':
-            break;
+                if (value.length < 2) {
+                    err = "Country should be at least 2 characters long!";
+                } else {
+                    err = "";
+                }
+                break;
             case 'streetNumber':
-            break;
+                if (Number(value) < 1) {
+                    err = "Street number should be a positive number!";
+                } else {
+                    err = "";
+                }
+                break;
             default:
                 break;
         }
+
+        setErrors(state => ({ ...state, [currentEl]: err }));
 
     }
 
