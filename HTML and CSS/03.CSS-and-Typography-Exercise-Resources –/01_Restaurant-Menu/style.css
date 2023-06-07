@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    font-weight: 400;
+    line-height: 1.15;
+    font-family: 'Sentinel A', 'Sentinel B', Georgia, 'Times New Roman', Times, serif;
+    color: #747474;
+}
+
+p {
+    /* font: 400 16px/1.46 'Graphik Regular Web', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.46;
+    font-family: 'Graphik Regular Web', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #5c5a5a;
+}
+
+span {
+    /* font: 600 oblique 16px/1.46 'Graphik Semibold Web', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+    font-weight: 600;
+    font-style: oblique;
+    font-size: 16px;
+    line-height: 1.46;
+    font-family: 'Graphik Semibold Web', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #5c5a5a;
+    display: block;
+    margin-bottom: 1em;
+}
