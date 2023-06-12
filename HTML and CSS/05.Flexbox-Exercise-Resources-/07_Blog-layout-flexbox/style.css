@@ -1,0 +1,58 @@
+body {
+    background-color: rgb(238, 238, 238);
+    margin: 3em 5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, serif;
+}
+
+h1 {
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 65%;
+    /* flex-direction: column; */
+}
+
+aside {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 35%;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+image {
+    background-color: rgb(255, 255, 255);
+}
+
+blockquote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    border-left: 2px solid lightgray;
+    padding-left: 1em;
+}
+
+aside a {
+    color: rgb(0, 15310, blue);
+}
