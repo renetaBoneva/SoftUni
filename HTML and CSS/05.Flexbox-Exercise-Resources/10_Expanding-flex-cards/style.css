@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100vh;
+    background-color: rgb(238, 238, 238);
+}
+
+section {
+    display: flex;
+    flex: 0 0 60%;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+img {
+    box-shadow: 0 0 1em gray;
+    object-fit: cover;
+    border-radius: 1em;
+    width: 10%;
+}
+
+img:hover {
+    width: 60%;
+}

@@ -1,0 +1,82 @@
+body {
+    background-color: rgb(238, 238, 238);
+    margin: 3em 5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Georgia, serif;
+    width: 100% ;
+}
+
+h1 {
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 60%;
+    margin-right: 2em;
+}
+
+aside {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 35%;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+img {
+    background-color: rgb(255, 255, 255);
+    padding: 1em;
+    border: 0.5em solid #000;
+    box-shadow: 0 0 10px #000;
+}
+
+section > div {
+    display: flex;
+}
+
+section > div p{
+    flex: 1 1 50%;
+}
+
+blockquote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    border-left: 2px solid lightgray;
+    width: 40%;
+    padding-left: 1em;
+    float: right;
+}
+
+aside a {
+    color: rgb(0, 153, 0);
+}
+
+.align-right-img {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+
+.align-left-img {
+    float: left;
+    margin: 0 1em 1em 0;
+}

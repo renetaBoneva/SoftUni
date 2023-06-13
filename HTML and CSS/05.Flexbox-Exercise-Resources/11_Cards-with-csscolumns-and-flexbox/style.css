@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(238, 238, 238);
+    padding: 3em 20%;
+}
+
+.cards-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.masonry {
+    align-content: stretch;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex-basis: 30%;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em gray;
+}
+
+.masonry .card {
+    height: fit-content;
+}
+
+.flex .card {
+    justify-content: space-between;
+}
+
+.card section,
+.card footer {
+    padding: 1em;
+}
+
+.card footer {
+    border-top: 2px solid lightgray;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}

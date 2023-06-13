@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    margin: 5em 3em;
+    background-color: #eee;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3em;
+
+    list-style: none;
+}
+
+li {
+    display: flex;
+    flex: 0 1 25%;
+    flex-grow: 30em;    
+    padding: 1em;
+
+    align-items: center;
+    border: 1em solid black;
+    overflow: hidden;
+    box-shadow: 0 0 10px #000;
+}
+
+img {
+    overflow: hidden;
+    width: 100%;
+}
