@@ -1,0 +1,45 @@
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+ul li {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: #eee;
+    color: black;
+    max-width: 50px;
+    max-height: 50px;
+}
+
+i {
+    color: black;
+    padding: 0.2em;
+}
+
+i.fa-facebook:hover {
+    color: #3b5998;
+}
+
+i.fa-twitter:hover  {
+   color: #1DA1F2;
+}
+
+i.fa-google-plus:hover {
+    color: 	#E60023;
+}
+
+i.fa-linkedin:hover {
+    color: #0A66C2;
+}
+
+i.fa-instagram:hover {
+    color: lightseagreen;
+}
