@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    background-color: rgb(243, 245, 250);
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    background-color: rgb(173, 226, 223);
+    padding: 2em 0;
+}
+
+article {
+    padding: 3em;
+}
+
+article:first-child {
+    padding-top: 0;
+}
+
+article:last-child {
+    padding-bottom: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+/* -------------
+      Header 
+-------------- */
+header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em 5em;
+}
+
+header ul {
+    display: flex;
+}
+
+header nav ul li a {
+    color: #000;
+    padding: 0 1.5em;
+    font-weight: 400;
+}
+
+header nav.auth li:nth-child(2) a,
+main>.container a,
+#offers a,
+#pricing-plans article:nth-child(2) a {
+    background-color: rgb(173, 226, 223);
+    border-radius: 0.5em;
+    padding: 1em 2em;
+    font-weight: 500;
+    color: #000;
+}
+
+/* ---------------------------------------
+    About section & Get started section
+---------------------------------------- */
+/* First article */
+h1,
+#get-started h3 {
+    font-size: 48px;
+}
+
+#get-started h3 {
+    padding-top: 2rem;
+}
+
+section#about-section {
+    padding-bottom: 0;
+}
+
+section#about-section .container article:nth-child(1) p,
+#get-started p {
+    padding: 1.5em;
+    text-align: center;
+}
+
+.download-links {
+    min-height: 3.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* temporary */
+.download-links li {
+    margin: 0 0.5rem;
+}
+
+.download-links svg {
+    fill: #fff;
+}
+
+.download-links a {
+    color: #fff;
+    background-color: #000;
+    padding: 1.2em 2.5em;
+    border-radius: 0.5em;
+    font-weight: 500;
+}
+
+/* Second Article */
+section#about-section .container article:nth-child(2) {
+    display: flex;
+    background-color: #fff;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    flex: 1 0 30%;
+    padding: 0 3em;
+    border-left: 1px solid lightgray;
+}
+
+.card:last-child {
+    border-right: 1px solid lightgray;
+
+}
+
+.card .num {
+    font-size: 40px;
+    font-weight: 500;
+    padding: 1rem 0;
+}
+
+.card .description {
+    padding: 1em 0;
+}
+
+/* Third Article */
+section#about-section .container article:nth-child(3) {
+    padding: 0;
+    display: flex;
+    max-height: 30em;
+}
+
+section#about-section .container article:nth-child(3) div:nth-child(1) {
+    overflow: hidden;
+    border: 3px dashed #98B8B6;
+}
+
+
+section#about-section .container article:nth-child(3) div:nth-child(1) img {
+    display: block;
+    height: 100%;
+    width: auto;
+}
+
+section#about-section .container article:nth-child(3) div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    align-content: center;
+    width: 50%;
+    padding: 2em 5em;
+}
+
+section#about-section .container article:nth-child(3) div:nth-child(2) p {
+    padding: 0.5em 0;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+section#about-section .container article:nth-child(3) div:nth-child(2) a {
+    margin-top: 1em;
+    color: black;
+    border-bottom: 1px solid #000;
+}
+
+main>.container {
+    padding: 2em;
+    background-color: rgb(243, 245, 250);
+}
+
+main>.container a {
+    margin-bottom: 1em;
+}
+
+/* Pricing plans section */
+#pricing-plans {
+    padding: 0;
+}
+
+#pricing-plans .container {
+    flex-direction: row;
+}
+
+#pricing-plans article {
+    padding: 2em;
+}
+
+#offers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #fff;
+}
+
+.offer {
+    margin: 1em 0;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#pricing-plans h3 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.subtitle {
+    padding: 1em 0;
+}
+
+.price {
+    font-size: 40px;
+    font-weight: 500;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid lightgray;
+}
+
+.price span {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.offer ul,
+#offers article:nth-child(2) ul {
+    padding: 2em 1em;
+}
+
+#pricing-plans ul li {
+    padding-bottom: 0.8em;
+}
+
+.offer:nth-child(2) {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+}
+
+#offers a {
+    padding: 1.5em 2em;
+    display: block;
+    text-align: center;
+}
+
+#pricing-plans article:nth-child(2) {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+#pricing-plans article:nth-child(2) div{
+    min-height: 380px;
+}
+
+#pricing-plans article:nth-child(2) h3{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+
+#pricing-plans article:nth-child(2) p{
+    font-size: 23px;
+    font-weight: 400;
+}
+
+#pricing-plans article:nth-child(2) ul{
+    display: flex;
+    flex-direction: column;
+    padding: 2em 0;
+}
+
+#pricing-plans article:nth-child(2) a{
+    align-self: flex-end;
+    width: 100%;
+    
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+}
+
+#white-space {
+    height: 3em;
+    background-color: rgb(243, 245, 250);
+}
+
+
+footer .container {
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer ul {
+    display: flex;
+    gap: 1em;
+}
+
+footer svg {
+    fill: #000;
+}
