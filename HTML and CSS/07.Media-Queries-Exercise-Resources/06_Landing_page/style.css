@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1920px;
+}
+
+section:nth-child(1) {
+    background: url(./Rectangle\ 2bgr1.png);
+}
+
+section:nth-child(2) { 
+    background: #68347B;
+}
+
+section:nth-child(3) {    
+  color: white;
+  background: repeating-linear-gradient(
+    -45deg,
+    white,
+    white 10px,
+    #f7f5f5 10px,
+    #f7f5f5 20px
+  );
+}
+
+.profile-photo{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1;
+}
+
+img {
+    display: block;
+    /* width: 100%; */
+    object-fit: cover;
+}
