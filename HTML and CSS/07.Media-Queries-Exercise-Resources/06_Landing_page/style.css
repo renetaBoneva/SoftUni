@@ -1,47 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Roboto+Condensed:wght@300;400&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
+    font: 18px/1.5 sans-serif;
+}
+
+body section,
+body footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .container {
     max-width: 1920px;
+    display: flex;
+    flex-direction: column;
 }
 
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2em;
+}
+
+h2 {
+    font-family: serif;
+    text-align: center;
+    padding-bottom: 0.5em;
+    font-size: 36px;
+}
+
+hr {
+    border-bottom: 2px solid #000;
+    width: 4em;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Sections' background */
 section:nth-child(1) {
     background: url(./Rectangle\ 2bgr1.png);
 }
 
-section:nth-child(2) { 
+section:nth-child(2) {
     background: #68347B;
 }
 
-section:nth-child(3) {    
-  color: white;
-  background: repeating-linear-gradient(
-    -45deg,
-    white,
-    white 10px,
-    #f7f5f5 10px,
-    #f7f5f5 20px
-  );
+section:nth-child(3) {
+    background: repeating-linear-gradient(-45deg,
+            white,
+            white 10px,
+            #f7f5f5 10px,
+            #f7f5f5 20px);
 }
 
-.profile-photo{
+/* -------------------------
+        Header section
+------------------------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+}
+
+.logo {
+    color: #68347B;
+    font-size: 44px;
+}
+
+.brand p {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+}
+
+.sandwich-menu {
+    display: none;
+}
+
+header ul {
+    display: flex;
+    gap: 3em;
+}
+
+header ul a {
+    color: #000;
+}
+
+/* -------------------------
+   Need a website section
+------------------------- */
+#need-a-website {
+    flex-direction: row;
+}
+
+#need-a-website div {
+    padding: 0 2em;
+    text-align: left;
+    max-width: 60%;
+}
+
+#need-a-website h2 {
+    text-align: left;
+}
+
+#need-a-website div p {
+    width: 80%;
+    line-height: 2;
+    padding-bottom: 1.5em;
+}
+
+#need-a-website div a {
+    padding: 0.5em 2em;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 0.5em;
+}
+
+#need-a-website svg {
+    font-size: 10em;
+}
+
+/* -------------------------
+      Our team section
+------------------------- */
+.profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 2em;
+}
+
+.profile {
+    flex: 1 0 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-photo {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
     aspect-ratio: 1;
+    margin-bottom: 0.5em;
+    box-shadow: 0 0 1em 0 rgb(211, 211, 211);
+    border: 3px solid rgba(211, 211, 211, 0.1);
 }
 
-img {
+.name {
+    font-weight: bold;
+}
+
+.profile p {
+    padding-top: 0.5em;
+    text-align: center;
+}
+
+.profile p:nth-child(3) {
+    padding-top: 0;
+}
+
+section:nth-child(1) .profile p:last-child {
+    margin-top: 1em;
+}
+
+/* -------------------------
+      Sign up section
+------------------------- */
+#sign-up-here {
+    padding-top: 0;
+}
+
+#sign-up-here h2 {
+    color: #fff;
+}
+
+form {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 2em;
+    width: 100%;
+}
+
+form input {
+    min-height: 2em;
+    flex: 1 0 60%;
+}
+
+form button {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: #fff;
+    color: #68347B;
+    font-weight: bold;
+}
+
+/* -------------------------
+      Testimonials section
+------------------------- */
+section:nth-child(3) p {
+    padding: 0;
+}
+
+.profie-description {
+    margin-bottom: 1em;
+}
+
+/* -------------------------
+      Footer section
+------------------------- */
+footer {
+    box-shadow:
+        inset 0px 11px 8px -10px #CCC,
+        inset 0px -11px 8px -10px #fff;
+    background: url(./Rectangle\ 2bgr1.png);
+}
+
+footer .container {
+    padding: 0 2em;
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+}
+
+.box {
+    flex: 1 0 30%;
+}
+
+.box h3 {
+    font-size: 24px;
+}
+
+.box:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-right: 1em;
+}
+
+.box:nth-child(1) h2 {
+    text-align: left;
+}
+
+.box:nth-child(2) nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.box:nth-child(2) nav ul a {
+    color: #000;
+}
+
+@media (max-width: 758px) {
+
+    /* Menu */
+    header {
+        align-items: flex-start;
+    }
+
+    header nav {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .sandwich-menu {
+        display: block;
+    }
+
+    #main-nav {
+        display: none;
+        position: relative;
+    }
+
+    .sandwich-menu:hover+#main-nav,
+    #main-nav:hover {
+        display: block;
+    }
+
+    header li {
+        background-color: rgba(104, 52, 123, 0.1);
+        padding: 0.5em 1em;
+    }
+
+    header li:first-child {
+        border-radius: 0.5em 0.5em 0 0;
+    }
+
+    header li:last-child {
+        border-radius: 0 0 0.5em 0.5em;
+    }
+
+    li:hover {
+        background-color: rgba(104, 52, 123, 0.5);
+    }
+
+    header li a {
+        color: #fff;
+    }
+
+    /* Need website section */
+
+#need-a-website div a {
     display: block;
-    /* width: 100%; */
-    object-fit: cover;
+    text-align: center;
+}
+
+    /* Our Team section */
+    .profile {
+        flex: 1 0 50%;
+    }
+
+    /* Footer */
+    footer .container {
+        flex-direction: column;
+        padding: 0 3em;
+    }
+}
+
+@media (max-width: 425px) {
+    body {
+        font: 12px/1.5 sans-serif;
+    }
+
+    /* Menu */
+    header nav {
+        width: 40%;
+    }
+
+    .logo {
+        font-size: 28px
+    }
 }
