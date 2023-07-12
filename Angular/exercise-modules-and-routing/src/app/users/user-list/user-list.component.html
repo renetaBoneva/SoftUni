@@ -1,0 +1,9 @@
+<section class="users-wrapper">
+    <button (click)="reloadUsers()">Reload users</button>
+    <article 
+    *ngFor="let user of users"
+    [routerLink]="['/user', 'details', user.id]" 
+    class="user">
+        <h2 >{{user.id}}\ {{user.name}}</h2>
+    </article>
+</section>

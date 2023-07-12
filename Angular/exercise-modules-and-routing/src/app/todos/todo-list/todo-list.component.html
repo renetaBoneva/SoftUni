@@ -1,0 +1,13 @@
+<ul class="todo-wrapper">
+    <h2>Todo list</h2>
+    <li *ngFor="let todo of todos; let i=index">
+        <div *ngIf="!todo.completed" (click)="changeComplete(i)">
+            <p  class="done"> {{i}}\ </p>
+            <p  class="done">{{todo.title}}</p>
+        </div>
+        <div *ngIf="todo.completed" (click)="changeComplete(i)">
+            <p  class="undone"> {{i}}\ </p>
+            <p  class="undone">{{todo.title}}</p>
+        </div>
+    </li>
+</ul>

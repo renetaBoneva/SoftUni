@@ -1,0 +1,13 @@
+h2 {
+    font-size: medium;
+    text-align: center;
+}
+
+article {
+    padding: 0.5em 2em;
+}
+
+article:hover {
+    background-color: palevioletred;
+    color: #fff;
+}
