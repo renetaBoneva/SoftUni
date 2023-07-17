@@ -1,0 +1,40 @@
+<div appHighlightOnMouse>Hello, directives! I'm home!</div>
+<hr>
+
+<br>
+<br>
+<!-- Playground -->
+<!-- Structural directives -->
+<div *ngIf="true">Simple div 1</div>
+
+<ng-template [ngIf]="true">
+    <div>Simple div 1.1</div>
+</ng-template>
+
+<br>
+<!-- Custom structural directives -->
+<button (click)="toggle()">toggle</button>
+<!-- Usage 1 -->
+<div *appMyStructuralDirective="isShown">
+    Structural directives (Usage 1)
+</div>
+<!-- Usage 2 -->
+<ng-template 
+[appMyStructuralDirective]="isShown" 
+let-v="value" 
+let-impl=""
+#directiveRef="appMyStructuralDirective"
+>
+<div>Structural directives (Usage 2)
+    <span>data: {{v}}</span>
+    <span>implicit: {{impl}}</span>
+</div>
+</ng-template>
+<!-- Usage 3 -->
+<ng-template #tmp>
+    <div>Structural directives (Usage 3)</div>
+</ng-template>
+<ng-container 
+[appMyStructuralDirective]="isShown"
+[myTmpProp]="tmp"
+/>
