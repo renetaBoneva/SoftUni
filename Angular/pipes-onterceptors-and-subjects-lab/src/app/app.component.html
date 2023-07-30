@@ -1,0 +1,30 @@
+<h1>hi, {{user.name}}</h1>
+<div>
+  <p>Age: {{user.age}}</p>
+  <p>List sum: {{user.list | reduce : sum : 0}}</p>
+</div>
+<div>
+  <p>Promise: {{p | async}}</p>
+  <p>Clock: {{time$ | async | date : 'hh:mm:ss'}}</p>
+</div>
+<div>
+  <p *ngIf="(isLoadingUsers$ | async) === true">Loading...</p>
+  <ng-container *ngIf="(isLoadingUsers$ | async) === false">
+    <p>{{usersObs$ | async | json}}</p>
+    <button *ngIf="(usersObs$ | async) === null" (click)="reloadUsers()">Load users</button>
+    <button *ngIf="(usersObs$ | async) !== null" (click)="reloadUsers()">Reload users</button>
+  </ng-container>
+</div>
+
+
+<nav>
+  <ul>
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li>
+      <a routerLink="/lazy">Lazy</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
