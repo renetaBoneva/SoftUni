@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('./images/background.jpg');
+    font-family: "Inter", sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2em;
+    padding: 5em 10em;
+}
+
+main {
+    flex: 1 0 60%;
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+}
+
+section,
+aside {
+    background-color: white;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.text {
+    color: gray;
+    font-size: 18px;
+}
+
+/* section style */
+section {
+    display: flex;
+    padding: 3em 2em;
+}
+
+.quotationMark {
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: flex-start;
+}
+
+.name {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.image {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    max-height: 25em;
+}
+
+.image img {
+    width: 100%;
+}
+
+/* aside section */
+aside {
+    flex: 1 0 40%;
+    padding: 2em 1em;
+    height: 100%;
+}
+
+aside .text {
+    padding: 5em 0;
+}
+
+.author {
+    padding-top: 1em;
+    display: flex;
+    gap: 1em;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-top: 1px solid lightgray;
+}
+
+.author .image {
+    max-height: 5em;
+}
