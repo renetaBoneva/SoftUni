@@ -108,18 +108,16 @@ exports.buy = async (req, res) => {
 
 }
 
-
 exports.getSearch = async (req, res) => {
-    let { name, paymentMethod } = req.body;
+    let { name, paymentMethod } = req.query;
     let payment;
     const searchData = {};
 
     if (paymentMethod) {
         payment = getCurrentPaymentMethod(paymentMethod);
         searchData.paymentMethod = paymentMethod;
-        console.log(payment);
     } else {
-        payment = getCurrentPaymentMethod('crypto-wallet');
+        payment = getCurrentPaymentMethod('');
     }
 
     if (name) {
@@ -129,7 +127,7 @@ exports.getSearch = async (req, res) => {
     try {
         const coins = await cryptoService.getSearched(searchData).lean();
 
-        res.render('crypto/search', { payment, coins, name})
+        res.render('crypto/search', { payment, coins, name })
     } catch (err) {
         console.log('Error: ' + getErrorMessage(err));
         res.render(`home`, { err: getErrorMessage(err) });
