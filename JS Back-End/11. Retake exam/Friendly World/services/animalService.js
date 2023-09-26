@@ -4,12 +4,16 @@ exports.getAll = () => Animal.find({});
 
 exports.getOneById = (animalId) => Animal.findOne({ _id: animalId });
 
-exports.searchByLocation = async (location) => {
-    const animals = await Animal.find({});
-    let filtered = [];
-    animals.forEach(animal => animal.location.toLowerCase().includes(location) ? filtered.push(animal) : '');
-    return filtered;
-}
+// Another way to search by location
+// exports.searchByLocation = async (location) => {
+//     const animals = await Animal.find({}).lean();
+//     let filtered = [];
+//     animals.forEach(animal => animal.location.toLowerCase().includes(location) ? filtered.push(animal) : '');
+    
+//     return filtered;
+// }
+
+exports.searchByLocation = (location) => Animal.find({location: {$regex: `${location}`, $options: 'i'}}) 
 
 exports.create = (name, years, kind, image, need, location, description, owner) =>
     Animal.create({ name, years, kind, image, need, location, description, owner });
