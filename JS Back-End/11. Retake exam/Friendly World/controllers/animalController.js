@@ -106,17 +106,11 @@ exports.donate = async (req, res) => {
 }
 
 exports.getSearch = async (req, res) => {
-    const { location } = req.query;
+    const { location = '' } = req.query;
 
     try {
-        let animals;
-        if (location) {
-            const locationRegex = new RegExp(`/${location}/`, 'i');
-            animals = await animalService.searchByLocation(location).lean();
-            console.log(animals);
-        } else {
-            animals = await animalService.getAll().lean();
-        }
+        const animals = await animalService.searchByLocation(location).lean();
+        
         res.render('animals/search', { animals })
     } catch (err) {
         console.log(err);
