@@ -480,3 +480,112 @@ test('Are edit and delete buttons visible for creator', async ({ page }) => {
     const isEditButtonVisible = await editButton.isVisible();
     expect(isEditButtonVisible).toBe(true);
 })
+
+test('Are edit and delete buttons visible for non-creator', async ({ page }) => {
+    await page.goto('http://localhost:3300');
+    await page.waitForSelector('nav.navbar');
+    await page.click('a[href="/login"]')
+    await page.fill('input[name="email"]', 'reneta.boneva@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+
+    await Promise.all([
+        page.click('input[type="submit"]'),
+        page.waitForURL('http://localhost:3300/catalog')
+    ]);
+    await page.waitForSelector('.otherBooks');
+
+    await page.click('.otherBooks a.button');
+    await page.waitForSelector('.actions');
+    
+    const deleteButton = await page.$('#details-page > div.book-information > div > a:nth-child(2)');
+    expect(deleteButton).toBe(null);
+})
+
+test('Is like button visible for creators', async ({ page }) => {
+    await page.goto('http://localhost:3300');
+    await page.waitForSelector('nav.navbar');
+    await page.click('a[href="/login"]')
+    await page.fill('input[name="email"]', 'reneta.boneva@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+
+    await Promise.all([
+        page.click('input[type="submit"]'),
+        page.waitForURL('http://localhost:3300/catalog')
+    ]);
+
+    await page.click('a[href="/create"]')
+    await page.waitForSelector('#create-form');
+    await page.fill("#title", 'Outlander');
+    await page.fill("#description", 'Test is a test book description');
+    await page.fill("#image", 'https://example.com/book-image.jpg');
+    await page.selectOption('#type', 'Fiction');
+    await page.click('#create-form input[type="submit"]');
+
+    await page.waitForURL('http://localhost:3300/catalog');
+    await page.waitForSelector('.otherBooks');
+
+    await page.click('.otherBooks a.button');
+    await page.waitForSelector('.actions');
+    
+    const likeButtonTxt = await page.textContent('#details-page > div.book-information > div > a');
+    const isLikeBtn = likeButtonTxt == "Like";
+    expect(isLikeBtn).toBe(false);
+})
+
+test('Is like button visible for non-creators', async ({ page }) => {
+    await page.goto('http://localhost:3300');
+    await page.waitForSelector('nav.navbar');
+    await page.click('a[href="/login"]')
+    await page.fill('input[name="email"]', 'reneta.boneva@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+
+    await Promise.all([
+        page.click('input[type="submit"]'),
+        page.waitForURL('http://localhost:3300/catalog')
+    ]);
+    await page.waitForSelector('.otherBooks');
+
+    await page.click('.otherBooks a.button');
+    await page.waitForSelector('.actions');
+    
+    const likeButtonTxt = await page.textContent('#details-page > div.book-information > div > a');
+    expect(likeButtonTxt).toBe("Like");
+})
+
+test('"Logout" Button Is Visible', async ({page})=>{    
+    await page.goto('http://localhost:3300');
+    await page.waitForSelector('nav.navbar');
+    await page.click('a[href="/login"]')
+    await page.fill('input[name="email"]', 'reneta.boneva@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+    
+    await Promise.all([
+        page.click('input[type="submit"]'),
+        page.waitForURL('http://localhost:3300/catalog')
+    ]);
+    
+    await page.waitForSelector('nav.navbar');
+    const logoutButton = await page.$('#logoutBtn');
+    const isLogoutButtonVisible = await logoutButton.isVisible();
+    expect(isLogoutButtonVisible).toBe(true);
+})
+
+test('"Logout" Button redirect correctly', async ({page})=>{    
+    await page.goto('http://localhost:3300');
+    await page.waitForSelector('nav.navbar');
+    await page.click('a[href="/login"]')
+    await page.fill('input[name="email"]', 'reneta.boneva@abv.bg');
+    await page.fill('input[name="password"]', '123456');
+    
+    await Promise.all([
+        page.click('input[type="submit"]'),
+        page.waitForURL('http://localhost:3300/catalog')
+    ]);
+    
+    await page.waitForSelector('nav.navbar');
+    const logoutButton = await page.$('#logoutBtn');
+    await logoutButton.click();
+
+    const redirectURL = page.url();
+    expect(redirectURL).toBe('http://localhost:3300/catalog');
+})
